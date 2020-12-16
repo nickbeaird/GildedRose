@@ -2,9 +2,12 @@
 
 namespace GildedRose.Console
 {
-    class Program
+    /// <summary>
+    /// class <c>Program</c> creates the GuildedRose store and updates the store's inventory.
+    /// </summary>
+    public class Program
     {
-        IList<Item> Items;
+        private IList<Item> _items;
         static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
@@ -28,12 +31,18 @@ namespace GildedRose.Console
 
                           };
 
-            app.UpdateQuality();
-
             System.Console.ReadKey();
 
         }
+        public IList<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
 
+        /// <summary>
+        /// Updates a the store's inventory of Items adjusting each items quality by one day based on the item's 
+        /// </summary>
         public void UpdateQuality()
         {
             for (var i = 0; i < Items.Count; i++)
@@ -112,6 +121,12 @@ namespace GildedRose.Console
 
     }
 
+    /// <summary>
+    /// class <c>Item</c> allows for tracking the state of inventory items.
+    /// <param name="Name">The Item's name.</param>
+    /// <param name="Sellin">An integer representing the days in which the item must be sold within.</param>
+    /// <param name="Quality">An integer designating the value of the item.</param>
+    /// </summary>
     public class Item
     {
         public string Name { get; set; }
